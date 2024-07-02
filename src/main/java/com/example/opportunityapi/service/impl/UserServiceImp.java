@@ -13,7 +13,6 @@ public class UserServiceImp implements UserService {
 
     private final UserRepo userRepo;
 
-
     @Override
     public UserDetailsService userDetailsService() {
         return username -> userRepo.findByEmail(username).orElseThrow(

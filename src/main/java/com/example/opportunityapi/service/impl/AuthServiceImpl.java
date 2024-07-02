@@ -7,7 +7,6 @@ import com.example.opportunityapi.model.mapper.UserMapper;
 import com.example.opportunityapi.repository.UserRepo;
 import com.example.opportunityapi.service.AuthService;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
@@ -31,7 +30,7 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public UserRegisterDto register(UserRegisterDto dto) {
 
-        String verificationCode = RandomStringUtils.randomNumeric(6);
+//        String verificationCode = RandomStringUtils.randomNumeric(6);
 //        sendMailService.sendMail(dto.getEmail(), verificationCode, "confirm your account");
 
         User user = userMapper.toEntity(dto);
