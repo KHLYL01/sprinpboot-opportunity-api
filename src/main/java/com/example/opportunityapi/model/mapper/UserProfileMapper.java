@@ -1,7 +1,7 @@
 package com.example.opportunityapi.model.mapper;
 
 
-import com.example.opportunityapi.model.dto.AddUserProfileDto;
+import com.example.opportunityapi.model.dto.UpdateUserProfileDto;
 import com.example.opportunityapi.model.dto.UserProfileDto;
 import com.example.opportunityapi.model.entity.UserProfile;
 import lombok.RequiredArgsConstructor;
@@ -14,8 +14,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class UserProfileMapper {
 
-    public List<UserProfileDto> toDtos(List<UserProfile> entitys) {
-        return entitys.stream().map(this::toDto).collect(Collectors.toList());
+    public List<UserProfileDto> toDtos(List<UserProfile> entities) {
+        return entities.stream().map(this::toDto).collect(Collectors.toList());
     }
 
     public UserProfileDto toDto(UserProfile entity) {
@@ -36,8 +36,9 @@ public class UserProfileMapper {
                 .build();
     }
 
-    public UserProfile toEntity(AddUserProfileDto dto) {
+    public UserProfile toEntity(UpdateUserProfileDto dto, int id) {
         return UserProfile.builder()
+                .id(id)
                 .age(dto.getAge())
                 .city(dto.getCity())
                 .country(dto.getCountry())

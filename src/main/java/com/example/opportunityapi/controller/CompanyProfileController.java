@@ -1,7 +1,8 @@
 package com.example.opportunityapi.controller;
 
+import com.example.opportunityapi.model.dto.UpdateCompanyProfileDto;
 import com.example.opportunityapi.model.dto.UpdateUserProfileDto;
-import com.example.opportunityapi.service.UserProfileService;
+import com.example.opportunityapi.service.CompanyProfileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -12,10 +13,10 @@ import java.io.IOException;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/profiles")
-public class UserProfileController {
+@RequestMapping("/api/v1/companies")
+public class CompanyProfileController {
 
-    final private UserProfileService service;
+    final private CompanyProfileService service;
 
     @GetMapping
     public ResponseEntity<?> findAll() {
@@ -27,8 +28,8 @@ public class UserProfileController {
         return ResponseEntity.ok(service.findByUserId(id));
     }
 
-    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<?> add(@ModelAttribute UpdateUserProfileDto dto) throws IOException {
+    @PostMapping
+    public ResponseEntity<?> update(@RequestBody UpdateCompanyProfileDto dto) {
         return new ResponseEntity<>(service.update(dto), HttpStatus.CREATED);
     }
 

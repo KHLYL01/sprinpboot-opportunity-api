@@ -1,6 +1,6 @@
 package com.example.opportunityapi.service.impl;
 
-import com.example.opportunityapi.model.dto.AddUserProfileDto;
+import com.example.opportunityapi.model.dto.UpdateUserProfileDto;
 import com.example.opportunityapi.model.dto.UserProfileDto;
 import com.example.opportunityapi.model.entity.User;
 import com.example.opportunityapi.model.entity.UserProfile;
@@ -33,17 +33,24 @@ public class UserProfileServiceImpl implements UserProfileService {
     }
 
     @Override
-    public UserProfileDto add(AddUserProfileDto dto) throws IOException {
+    public UserProfileDto findByUserId(int id) {
+        return mapper.toDto(repo.findById(id).get());
+    }
+
+    @Override
+    public UserProfileDto update(UpdateUserProfileDto dto) throws IOException {
 
         String imageUrl = imageService.uploadImage(dto.getImageFile());
-        User user = userRepo.findById(dto.getUserId()).get();
+//        User user = userRepo.findById(dto.getUserId()).get();
 
-        UserProfile userProfile = mapper.toEntity(dto);
-        userProfile.setUser(user);
+        UserProfile userProfile = repo.findByUser_Id(dto.getUserId());
 
-        userProfile.setImage_url(imageUrl);
+        UserProfile userProfile1 = mapper.toEntity(dto, userProfile.getId());
 
-        UserProfile saved = repo.save(userProfile);
+        userProfile1.setImage_url(imageUrl);
+        userProfile1.setUser(userProfile.getUser());
+
+        UserProfile saved = repo.save(userProfile1);
 
         return mapper.toDto(saved);
     }

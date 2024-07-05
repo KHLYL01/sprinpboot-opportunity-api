@@ -9,7 +9,9 @@ public interface UserProfileService {
 
     List<UserProfileDto> findAll();
 
-    UserProfileDto add(AddUserProfileDto dto) throws IOException;
+    UserProfileDto findByUserId(int id);
+
+    UserProfileDto update(UpdateUserProfileDto dto) throws IOException;
 
     void delete(int id);
 
