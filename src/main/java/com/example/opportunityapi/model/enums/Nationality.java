@@ -1,0 +1,27 @@
+package com.example.opportunityapi.model.enums;
+
+public enum Nationality {
+    NONE,
+    ALGERIAN,
+    BAHRAINI,
+    COMORIAN,
+    DJIBOUTIAN,
+    EGYPTIAN,
+    IRAQI,
+    JORDANIAN,
+    KUWAITI,
+    LEBANESE,
+    LIBYAN,
+    MAURITANIAN,
+    MOROCCAN,
+    OMANI,
+    PALESTINIAN,
+    QATARI,
+    SAUDI,
+    SOMALI,
+    SUDANESE,
+    SYRIAN,
+    TUNISIAN,
+    EMIRATI,
+    YEMENI,
+}

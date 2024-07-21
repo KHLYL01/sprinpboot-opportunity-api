@@ -13,26 +13,14 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Jop {
+public class JobCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne
-    @JoinColumn(name = "company_profile_id")
-    private CompanyProfile companyProfile;
-
-    private double rate;
+    private String name;
 
     @CreationTimestamp
     private LocalDateTime createdDate;
-//+title
-//+description
-//+opportunity_criteria
-//+apply_criteria
-//+ expiry_date
-//+documents
-//+company_profile_id
-//+address_id
-//+sub_category_id
+
 }
