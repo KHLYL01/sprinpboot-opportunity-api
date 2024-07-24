@@ -2,9 +2,12 @@ package com.example.opportunityapi.service.impl;
 
 import com.example.opportunityapi.config.JwtService;
 import com.example.opportunityapi.model.dto.*;
+import com.example.opportunityapi.model.entity.CompanyProfile;
 import com.example.opportunityapi.model.entity.User;
 import com.example.opportunityapi.model.entity.UserProfile;
+import com.example.opportunityapi.model.enums.Role;
 import com.example.opportunityapi.model.mapper.UserMapper;
+import com.example.opportunityapi.repository.CompanyProfileRepo;
 import com.example.opportunityapi.repository.UserProfileRepo;
 import com.example.opportunityapi.repository.UserRepo;
 import com.example.opportunityapi.service.AuthService;
@@ -22,6 +25,8 @@ public class AuthServiceImpl implements AuthService {
     private final UserRepo userRepo;
 
     private final UserProfileRepo userProfileRepo;
+
+    private final CompanyProfileRepo companyProfileRepo;
 
     private final UserMapper userMapper;
 
@@ -43,10 +48,15 @@ public class AuthServiceImpl implements AuthService {
 //        user.setVerificationCode(verificationCode);
 
         User savedUser = userRepo.save(user);
-        userProfileRepo.save(UserProfile.builder()
-                .user(user)
-                .build());
-
+        if (savedUser.getRole() == Role.COMPANY) {
+            companyProfileRepo.save(CompanyProfile.builder()
+                    .user(user)
+                    .build());
+        } else if (savedUser.getRole() == Role.USER) {
+            userProfileRepo.save(UserProfile.builder()
+                    .user(user)
+                    .build());
+        }
         return userMapper.toRegisterDto(savedUser);
     }
 

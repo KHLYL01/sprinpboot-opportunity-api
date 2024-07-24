@@ -11,6 +11,8 @@ public interface JobService {
 
     List<JobDto> findAll();
 
+    List<JobDto> findAllByCompanyProfileId(int id);
+
     JobDto add(AddJobDto dto);
 
     JobDto update(AddJobDto dto, int id);

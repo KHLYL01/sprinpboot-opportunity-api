@@ -32,6 +32,11 @@ public class JobServiceImpl implements JobService {
         return mapper.toDtos(repo.findAll());
     }
 
+    @Override
+    public List<JobDto> findAllByCompanyProfileId(int id) {
+        return mapper.toDtos(repo.findAllByCompanyProfile_Id(id));
+    }
+
 
     @Override
     public JobDto add(AddJobDto dto) {
