@@ -28,6 +28,16 @@ public class ApplyController {
         return ResponseEntity.ok(service.findAllByStatus(status));
     }
 
+    @GetMapping("/users/{id}")
+    public ResponseEntity<?> findAllByUserProfileId(@PathVariable int id) {
+        return ResponseEntity.ok(service.findAllByUserProfileId(id));
+    }
+
+    @GetMapping("/companies/{id}")
+    public ResponseEntity<?> findAllByCompanyProfileId(@PathVariable int id) {
+        return ResponseEntity.ok(service.findAllByCompanyProfileId(id));
+    }
+
     @PostMapping
     public ResponseEntity<?> add(@RequestBody AddApplyDto dto) {
         return new ResponseEntity<>(service.add(dto), HttpStatus.CREATED);

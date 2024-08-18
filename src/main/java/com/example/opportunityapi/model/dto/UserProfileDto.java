@@ -16,24 +16,24 @@ public class UserProfileDto {
     private int userId;
 
     private String name;
-    
-    private String age;
+
+    private int age;
 
     private String gender;
 
-    private String educational_level;
+    private String educationalLevel;
 
     private String specialty;
 
     private String nationality;
 
-    private String country;
-
-    private String city;
+    private String location;
 
     private String image_url;
 
-    private String listOfOpportunity;
+    private String pdf_url;
+
+    private String ratingCompanyIds;
 
     private LocalDateTime createdDate;
 

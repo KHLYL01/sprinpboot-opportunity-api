@@ -11,6 +11,8 @@ public interface JobSubCategoryService {
 
     List<JobSubCategoryDto> findAll();
 
+    List<JobSubCategoryDto> findAllByCategoryId(int id);
+
     JobSubCategoryDto add(AddJobSubCategoryDto dto);
 
     JobSubCategoryDto update(AddJobSubCategoryDto dto, int id);

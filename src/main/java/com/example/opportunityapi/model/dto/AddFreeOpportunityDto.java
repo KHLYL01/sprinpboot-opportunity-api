@@ -14,6 +14,8 @@ public class AddFreeOpportunityDto {
 
     private String description;
 
+    private String url;
+
     private int userProfileId;
 
     private int freeCategoryId;

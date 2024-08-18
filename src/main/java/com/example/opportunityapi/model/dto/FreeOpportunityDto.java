@@ -20,6 +20,8 @@ public class FreeOpportunityDto {
 
     private String description;
 
+    private String url;
+
     private UserProfile userProfile;
 
     private FreeCategory freeCategory;

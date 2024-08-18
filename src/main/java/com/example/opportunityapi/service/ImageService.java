@@ -7,6 +7,8 @@ import java.io.IOException;
 
 public interface ImageService {
 
+    boolean checkIsFound(String path);
+
     String uploadImage(MultipartFile image) throws IOException;
 
     byte[] viewImage(String imageName) throws IOException;

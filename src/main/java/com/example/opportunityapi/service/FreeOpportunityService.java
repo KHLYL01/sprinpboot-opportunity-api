@@ -11,6 +11,8 @@ public interface FreeOpportunityService {
 
     List<FreeOpportunityDto> findAll();
 
+    List<FreeOpportunityDto> findAllByUserId(int id);
+
     FreeOpportunityDto add(AddFreeOpportunityDto dto);
 
     FreeOpportunityDto update(AddFreeOpportunityDto dto, int id);

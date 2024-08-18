@@ -37,17 +37,25 @@ public class ReportServiceImpl implements ReportService {
         return mapper.toDtos(repo.findAllByCompanyProfileId(id));
     }
 
+    @Override
+    public List<ReportDto> findAllByUserProfileId(int id) {
+        return mapper.toDtos(repo.findAllByUserProfile_Id(id));
+    }
+
 
     @Override
     public ReportDto add(AddReportDto dto) throws IOException {
-
-        String imageUrl = imageService.uploadImage(dto.getImageFile());
 
         UserProfile userProfile = userProfileRepo.findById(dto.getUserProfileId()).get();
 
         Report report = mapper.toAddEntity(dto);
 
-        report.setImageUrl(imageUrl);
+
+        if (dto.getImageFile() != null) {
+            String imageUrl = imageService.uploadImage(dto.getImageFile());
+            report.setImageUrl(imageUrl);
+        }
+
         report.setUserProfile(userProfile);
 
         Report saved = repo.save(report);

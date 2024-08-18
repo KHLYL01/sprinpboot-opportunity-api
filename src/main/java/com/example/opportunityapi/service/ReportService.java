@@ -12,6 +12,8 @@ public interface ReportService {
 
     List<ReportDto> findAllByCompanyProfileId(int id);
 
+    List<ReportDto> findAllByUserProfileId(int id);
+
     ReportDto add(AddReportDto dto) throws IOException;
 
     void delete(int id);

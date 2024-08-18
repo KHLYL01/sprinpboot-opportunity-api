@@ -22,6 +22,8 @@ public class FreeOpportunity {
 
     private String description;
 
+    private String url;
+
     @ManyToOne
     @JoinColumn(name = "user_profile_id")
     private UserProfile userProfile;

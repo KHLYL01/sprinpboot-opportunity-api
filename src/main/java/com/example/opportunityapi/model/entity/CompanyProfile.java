@@ -24,6 +24,12 @@ public class CompanyProfile {
 
     private String scope;
 
+    private String imageUrl;
+
+    private int reviewCount;
+
+    private double totalRate;
+
     @CreationTimestamp
     private LocalDateTime createdDate;
 

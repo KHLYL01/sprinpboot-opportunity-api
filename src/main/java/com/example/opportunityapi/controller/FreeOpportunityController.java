@@ -19,6 +19,11 @@ public class FreeOpportunityController {
         return ResponseEntity.ok(service.findAll());
     }
 
+    @GetMapping("/userProfiles/{id}")
+    public ResponseEntity<?> findAllByUserProfileId(@PathVariable int id) {
+        return ResponseEntity.ok(service.findAllByUserId(id));
+    }
+
     @PostMapping
     public ResponseEntity<?> add(@RequestBody AddFreeOpportunityDto dto) {
         return new ResponseEntity<>(service.add(dto), HttpStatus.CREATED);

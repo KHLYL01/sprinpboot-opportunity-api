@@ -24,7 +24,12 @@ public class ReportController {
 
     @GetMapping("/companies/{id}")
     public ResponseEntity<?> findAllByCompanyProfileId(@PathVariable int id) {
-        return ResponseEntity.ok(service.findAll());
+        return ResponseEntity.ok(service.findAllByCompanyProfileId(id));
+    }
+
+    @GetMapping("/users/{id}")
+    public ResponseEntity<?> findAllByUserProfileId(@PathVariable int id) {
+        return ResponseEntity.ok(service.findAllByUserProfileId(id));
     }
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)

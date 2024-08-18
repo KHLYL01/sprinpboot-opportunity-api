@@ -21,6 +21,7 @@ public class JobSubCategoryMapper {
         return JobSubCategoryDto.builder()
                 .id(entity.getId())
                 .name(entity.getName())
+                .jobCategory(entity.getJobCategory())
                 .createdDate(entity.getCreatedDate())
                 .build();
     }

@@ -27,6 +27,7 @@ public class FreeOpportunityMapper {
                 .id(entity.getId())
                 .title(entity.getTitle())
                 .description(entity.getDescription())
+                .url(entity.getUrl())
                 .freeCategory(entity.getFreeCategory())
                 .userProfile(entity.getUserProfile())
                 .createdDate(entity.getCreatedDate())
@@ -37,6 +38,7 @@ public class FreeOpportunityMapper {
         return FreeOpportunity.builder()
                 .title(dto.getTitle())
                 .description(dto.getDescription())
+                .url(dto.getUrl())
                 .build();
     }
 

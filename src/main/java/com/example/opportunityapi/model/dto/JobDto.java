@@ -2,14 +2,7 @@ package com.example.opportunityapi.model.dto;
 
 import com.example.opportunityapi.model.entity.CompanyProfile;
 import com.example.opportunityapi.model.entity.JobSubCategory;
-import com.example.opportunityapi.model.entity.Locations;
-import com.example.opportunityapi.model.enums.Experience;
-import com.example.opportunityapi.model.enums.Gender;
-import com.example.opportunityapi.model.enums.JopType;
-import com.example.opportunityapi.model.enums.Nationality;
-import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -25,25 +18,23 @@ public class JobDto {
 
     private String description;
 
-    private double age;
+    private int age;
 
-    private Nationality nationality;
+    private String nationality;
 
-    private Gender gender;
+    private String gender;
 
-    private JopType jopType;
+    private String jopType;
 
-    private Experience experience;
+    private String experience;
 
-    private boolean online;
+    private String location;
 
-    private String url;
+    private String online;
 
     private LocalDateTime expiryDate;
 
     private CompanyProfile companyProfile;
-
-    private Locations locations;
 
     private JobSubCategory jobSubCategory;
 

@@ -1,8 +1,6 @@
 package com.example.opportunityapi.controller;
 
-import com.example.opportunityapi.model.dto.AddJobCategoryDto;
 import com.example.opportunityapi.model.dto.AddJobDto;
-import com.example.opportunityapi.service.JobCategoryService;
 import com.example.opportunityapi.service.JobService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,7 +19,7 @@ public class JobController {
         return ResponseEntity.ok(service.findAll());
     }
 
-    @GetMapping("/companies/{id}")
+    @GetMapping("/companyProfile/{id}")
     public ResponseEntity<?> findAllByJobProfileId(@PathVariable int id) {
         return ResponseEntity.ok(service.findAllByCompanyProfileId(id));
     }

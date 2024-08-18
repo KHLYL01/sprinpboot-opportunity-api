@@ -20,6 +20,11 @@ public class ImageServiceImpl implements ImageService {
     private String uploadImageDirectory;
 
     @Override
+    public boolean checkIsFound(String path) {
+        return Files.exists(Path.of(uploadImageDirectory + "/" + path));
+    }
+
+    @Override
     public String uploadImage(MultipartFile image) throws IOException {
         String uniqueFileName = UUID.randomUUID() + "_" + image.getOriginalFilename();
 

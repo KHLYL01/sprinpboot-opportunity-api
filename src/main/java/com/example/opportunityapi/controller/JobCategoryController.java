@@ -1,9 +1,7 @@
 package com.example.opportunityapi.controller;
 
 import com.example.opportunityapi.model.dto.AddJobCategoryDto;
-import com.example.opportunityapi.model.dto.AddRateDto;
 import com.example.opportunityapi.service.JobCategoryService;
-import com.example.opportunityapi.service.RateService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

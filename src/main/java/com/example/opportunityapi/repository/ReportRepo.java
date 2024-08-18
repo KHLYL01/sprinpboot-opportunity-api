@@ -11,4 +11,6 @@ public interface ReportRepo extends JpaRepository<Report, Integer> {
 
     List<Report> findAllByCompanyProfileId(int id);
 
+    List<Report> findAllByUserProfile_Id(int id);
+
 }

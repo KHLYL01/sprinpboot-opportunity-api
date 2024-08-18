@@ -3,10 +3,7 @@ package com.example.opportunityapi.model.mapper;
 
 import com.example.opportunityapi.model.dto.CompanyProfileDto;
 import com.example.opportunityapi.model.dto.UpdateCompanyProfileDto;
-import com.example.opportunityapi.model.dto.UpdateUserProfileDto;
-import com.example.opportunityapi.model.dto.UserProfileDto;
 import com.example.opportunityapi.model.entity.CompanyProfile;
-import com.example.opportunityapi.model.entity.UserProfile;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +24,9 @@ public class CompanyProfileMapper {
                 .userId(entity.getUser().getId())
                 .name(entity.getUser().getName())
                 .scope(entity.getScope())
+                .imageUrl(entity.getImageUrl())
+                .reviewCount(entity.getReviewCount())
+                .totalRate(entity.getTotalRate())
                 .createdDate(entity.getCreatedDate())
                 .build();
     }

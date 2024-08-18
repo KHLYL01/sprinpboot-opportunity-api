@@ -5,8 +5,10 @@ import com.example.opportunityapi.model.entity.UserProfile;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface CompanyProfileRepo extends JpaRepository<CompanyProfile, Integer> {
 
-    CompanyProfile findByUser_Id(int id);
+    Optional<CompanyProfile> findByUser_Id(int id);
 }

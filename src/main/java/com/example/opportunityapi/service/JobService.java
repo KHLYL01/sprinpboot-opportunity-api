@@ -1,8 +1,6 @@
 package com.example.opportunityapi.service;
 
-import com.example.opportunityapi.model.dto.AddJobCategoryDto;
 import com.example.opportunityapi.model.dto.AddJobDto;
-import com.example.opportunityapi.model.dto.JobCategoryDto;
 import com.example.opportunityapi.model.dto.JobDto;
 
 import java.util.List;

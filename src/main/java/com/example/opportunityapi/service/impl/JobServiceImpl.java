@@ -21,7 +21,6 @@ public class JobServiceImpl implements JobService {
 
 
     private final JobRepo repo;
-    private final LocationsRepo locationsRepo;
     private final JobSubCategoryRepo jobSubCategoryRepo;
     private final CompanyProfileRepo companyProfileRepo;
     private final JobMapper mapper;
@@ -34,20 +33,18 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public List<JobDto> findAllByCompanyProfileId(int id) {
-        return mapper.toDtos(repo.findAllByCompanyProfile_Id(id));
+        return mapper.toDtos(repo.findAllByCompanyProfile_IdOrderByCreatedDateDesc(id));
     }
 
 
     @Override
     public JobDto add(AddJobDto dto) {
 
-        Locations locations = locationsRepo.findById(dto.getLocationId()).get();
         JobSubCategory jobSubCategory = jobSubCategoryRepo.findById(dto.getJobSubCategoryId()).get();
         CompanyProfile companyProfile = companyProfileRepo.findById(dto.getCompanyProfileId()).get();
 
         Job job = mapper.toAddEntity(dto);
 
-        job.setLocations(locations);
         job.setJobSubCategory(jobSubCategory);
         job.setCompanyProfile(companyProfile);
 
@@ -62,7 +59,6 @@ public class JobServiceImpl implements JobService {
     @Override
     public JobDto update(AddJobDto dto, int id) {
 
-        Locations locations = locationsRepo.findById(dto.getLocationId()).get();
         JobSubCategory jobSubCategory = jobSubCategoryRepo.findById(dto.getJobSubCategoryId()).get();
         CompanyProfile companyProfile = companyProfileRepo.findById(dto.getCompanyProfileId()).get();
 
@@ -72,7 +68,6 @@ public class JobServiceImpl implements JobService {
 
         mappingJob.setId(job.getId());
         mappingJob.setCreatedDate(job.getCreatedDate());
-        mappingJob.setLocations(locations);
         mappingJob.setJobSubCategory(jobSubCategory);
         mappingJob.setCompanyProfile(companyProfile);
 

@@ -1,49 +1,52 @@
-//package com.example.opportunityapi.config;
-//
-//import com.example.fingerprint.model.dto.*;
-//import com.example.fingerprint.model.entity.Role;
-//import com.example.fingerprint.model.entity.User;
-//import com.example.fingerprint.repository.EmployeeRepo;
-//import com.example.fingerprint.repository.RoleRepo;
-//import com.example.fingerprint.repository.UserRepo;
-//import com.example.fingerprint.service.AuthService;
-//import com.example.fingerprint.service.EmployeeService;
-//import com.example.fingerprint.service.FingerPlaceService;
-//import com.example.fingerprint.service.TimezoneService;
-//import lombok.RequiredArgsConstructor;
-//import org.springframework.boot.CommandLineRunner;
-//import org.springframework.security.crypto.password.PasswordEncoder;
-//import org.springframework.stereotype.Component;
-//import org.springframework.transaction.annotation.Transactional;
-//
-//import java.util.HashSet;
-//import java.util.List;
-//import java.util.Set;
-//
-//@Component
-//@RequiredArgsConstructor
-//public class AppCommandRunner implements CommandLineRunner {
-//
-//
-//
-//    @Transactional
-//    @Override
-//    public void run(String... args) {
-//
-//        if (roleRepo.findAll().isEmpty()) {
-//
-//        }
-//
-//        System.out.println("============================= Admin =============================");
-//        System.out.println("Admin Token: " + adminResponse.getToken());
-//        System.out.println("Admin ID: " + adminResponse.getId());
-//        System.out.println("main Section ID: " + adminResponse.getMainSection().getId());
-//        System.out.println("main Timezone: " + adminResponse.getTimezone().getCapital());
-//        System.out.println("main Finger place: " + fingerPlace.getName());
-//        System.out.println("============================= Manager ===========================");
-//        System.out.println("Manager Token: " + managerResponse.getToken());
-//        System.out.println("============================= Employee ==========================");
-//        System.out.println("Employee Token: " + employeeResponse.getToken());
-//
-//    }
-//}
+package com.example.opportunityapi.config;
+
+import com.example.opportunityapi.model.dto.UserDto;
+import com.example.opportunityapi.model.dto.UserLoginDto;
+import com.example.opportunityapi.model.dto.UserRegisterDto;
+import com.example.opportunityapi.model.enums.Role;
+import com.example.opportunityapi.repository.UserRepo;
+import com.example.opportunityapi.service.AuthService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
+
+@Component
+@RequiredArgsConstructor
+public class AppCommandRunner implements CommandLineRunner {
+
+    private final UserRepo userRepo;
+    private final AuthService authService;
+
+    @Transactional
+    @Override
+    public void run(String... args) {
+
+        if (userRepo.findAll().isEmpty()) {
+            UserRegisterDto userRegisterDto = UserRegisterDto.builder()
+                    .name("Khalil")
+                    .email("admin@gmail.com")
+                    .password("12345678a")
+                    .phoneNumber("+963942200578")
+                    .role(Role.ADMIN)
+                    .build();
+            authService.register(userRegisterDto);
+        }
+
+        UserLoginDto loginDto = UserLoginDto.builder()
+                .email("admin@gmail.com").password("12345678a").build();
+
+        UserDto dto = authService.login(loginDto);
+
+        System.out.println("===================Admin===================");
+        System.out.println("name: " + dto.getName());
+        System.out.println("email: " + dto.getEmail());
+        System.out.println("phone: " + dto.getPhoneNumber());
+        System.out.println("role: " + dto.getRole());
+        System.out.println("token: " + dto.getToken());
+        System.out.println("refresh token: " + dto.getRefreshToken());
+
+    }
+}

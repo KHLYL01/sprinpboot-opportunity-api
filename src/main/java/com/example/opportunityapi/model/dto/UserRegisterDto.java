@@ -14,10 +14,8 @@ import lombok.Setter;
 public class UserRegisterDto {
     private String name;
 
-    @Email(message = "email is invalid formate xyz@gmail.com")
     private String email;
-
-    //    @Min(message = "password is lower than 8 letters", value = 8)
+    
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String password;
 

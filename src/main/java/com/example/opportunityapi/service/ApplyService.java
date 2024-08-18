@@ -9,6 +9,10 @@ public interface ApplyService {
 
     List<ApplyDto> findAll();
 
+    List<ApplyDto> findAllByUserProfileId(int id);
+
+    List<ApplyDto> findAllByCompanyProfileId(int id);
+
     List<ApplyDto> findAllByStatus(ApplyStatus status);
 
     ApplyDto add(AddApplyDto dto);

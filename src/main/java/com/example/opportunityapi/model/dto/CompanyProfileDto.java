@@ -19,6 +19,12 @@ public class CompanyProfileDto {
 
     private String scope;
 
+    private String imageUrl;
+
+    private int reviewCount;
+
+    private double totalRate;
+
     private LocalDateTime createdDate;
 
 }

@@ -28,23 +28,23 @@ public class UserProfile  {
     @JoinColumn(name = "user_id")
     private User user;
 
-    private String age;
+    private int age;
 
     private String gender;
 
-    private String educational_level;
+    private String educationalLevel;
 
     private String specialty;
 
     private String nationality;
 
-    private String country;
-
-    private String city;
+    private String location;
 
     private String image_url;
 
-    private String listOfOpportunity;
+    private String pdf_url;
+
+    private String ratingCompanyIds;
 
     @CreationTimestamp
     private LocalDateTime createdDate;

@@ -12,20 +12,19 @@ public class UpdateUserProfileDto {
 
     private int userId;
 
-    private String age;
+    private int age;
 
     private String gender;
 
-    private String educational_level;
+    private String educationalLevel;
 
     private String specialty;
 
     private String nationality;
 
-    private String country;
-
-    private String city;
+    private String location;
 
     private MultipartFile imageFile;
 
+    private MultipartFile pdfFile;
 }

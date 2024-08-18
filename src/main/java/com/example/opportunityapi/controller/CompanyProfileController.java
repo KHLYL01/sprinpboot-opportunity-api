@@ -1,7 +1,6 @@
 package com.example.opportunityapi.controller;
 
 import com.example.opportunityapi.model.dto.UpdateCompanyProfileDto;
-import com.example.opportunityapi.model.dto.UpdateUserProfileDto;
 import com.example.opportunityapi.service.CompanyProfileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -24,12 +23,12 @@ public class CompanyProfileController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> findUserById(@PathVariable int id) {
-        return ResponseEntity.ok(service.findByUserId(id));
+    public ResponseEntity<?> findById(@PathVariable int id) {
+        return ResponseEntity.ok(service.findById(id));
     }
 
-    @PostMapping
-    public ResponseEntity<?> update(@RequestBody UpdateCompanyProfileDto dto) {
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<?> add(@ModelAttribute UpdateCompanyProfileDto dto) throws IOException {
         return new ResponseEntity<>(service.update(dto), HttpStatus.CREATED);
     }
 

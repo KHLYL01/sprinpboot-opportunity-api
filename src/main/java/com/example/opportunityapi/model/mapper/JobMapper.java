@@ -29,13 +29,12 @@ public class JobMapper {
                 .gender(entity.getGender())
                 .experience(entity.getExperience())
                 .jopType(entity.getJopType())
-                .online(entity.isOnline())
+                .online(entity.getOnline())
                 .nationality(entity.getNationality())
                 .expiryDate(entity.getExpiryDate())
-                .url(entity.getUrl())
+                .location(entity.getLocation())
                 .companyProfile(entity.getCompanyProfile())
                 .jobSubCategory(entity.getJobSubCategory())
-                .locations(entity.getLocations())
                 .createdDate(entity.getCreatedDate())
                 .build();
     }
@@ -48,10 +47,10 @@ public class JobMapper {
                 .gender(dto.getGender())
                 .experience(dto.getExperience())
                 .jopType(dto.getJopType())
-                .online(dto.isOnline())
+                .online(dto.getOnline())
                 .nationality(dto.getNationality())
                 .expiryDate(dto.getExpiryDate())
-                .url(dto.getUrl())
+                .location(dto.getLocation())
                 .build();
     }
 

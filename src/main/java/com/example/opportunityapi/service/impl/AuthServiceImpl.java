@@ -74,6 +74,15 @@ public class AuthServiceImpl implements AuthService {
         userDto.setToken(jwt);
         userDto.setRefreshToken(refreshToken);
 
+        if (user.getRole() == Role.USER) {
+            UserProfile userProfile = userProfileRepo.findByUser_Id(user.getId()).get();
+            userDto.setProfileId(userProfile.getId());
+        }
+        if (user.getRole() == Role.COMPANY) {
+            CompanyProfile companyProfile = companyProfileRepo.findByUser_Id(user.getId()).get();
+            userDto.setProfileId(companyProfile.getId());
+        }
+
         return userDto;
     }
 

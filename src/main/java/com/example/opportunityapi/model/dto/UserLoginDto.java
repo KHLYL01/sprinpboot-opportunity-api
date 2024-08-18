@@ -11,10 +11,8 @@ import lombok.Setter;
 @Builder
 public class UserLoginDto {
 
-    @Email(message = "email is invalid formate xyz@gmail.com")
     private String email;
 
-    //    @Min(value = 8, message = "password is lower than 8 letters")
     private String password;
 
 }

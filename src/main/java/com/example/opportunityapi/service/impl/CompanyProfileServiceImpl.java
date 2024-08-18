@@ -1,9 +1,6 @@
 package com.example.opportunityapi.service.impl;
 
-import com.example.opportunityapi.model.dto.CompanyProfileDto;
-import com.example.opportunityapi.model.dto.UpdateCompanyProfileDto;
-import com.example.opportunityapi.model.dto.UpdateUserProfileDto;
-import com.example.opportunityapi.model.dto.UserProfileDto;
+import com.example.opportunityapi.model.dto.*;
 import com.example.opportunityapi.model.entity.CompanyProfile;
 import com.example.opportunityapi.model.entity.UserProfile;
 import com.example.opportunityapi.model.mapper.CompanyProfileMapper;
@@ -29,6 +26,7 @@ public class CompanyProfileServiceImpl implements CompanyProfileService {
 
     private final CompanyProfileMapper mapper;
 
+    private final ImageService imageService;
 
     @Override
     public List<CompanyProfileDto> findAll() {
@@ -36,16 +34,26 @@ public class CompanyProfileServiceImpl implements CompanyProfileService {
     }
 
     @Override
-    public CompanyProfileDto findByUserId(int id) {
+    public CompanyProfileDto findById(int id) {
         return mapper.toDto(repo.findById(id).get());
     }
 
     @Override
-    public CompanyProfileDto update(UpdateCompanyProfileDto dto) {
+    public CompanyProfileDto update(UpdateCompanyProfileDto dto) throws IOException {
 
-        CompanyProfile companyProfile = repo.findByUser_Id(dto.getUserId());
+        CompanyProfile companyProfile = repo.findByUser_Id(dto.getUserId()).get();
 
         CompanyProfile companyProfile1 = mapper.toEntity(dto, companyProfile.getId());
+
+        if (dto.getImageFile() != null) {
+            String imageUrl = imageService.uploadImage(dto.getImageFile());
+            companyProfile1.setImageUrl(imageUrl);
+            if (companyProfile.getImageUrl() != null) {
+                imageService.deleteImage(companyProfile.getImageUrl());
+            }
+        } else {
+            companyProfile1.setImageUrl(companyProfile.getImageUrl());
+        }
 
         companyProfile1.setUser(companyProfile.getUser());
 

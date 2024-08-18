@@ -36,6 +36,16 @@ public class ApplyServiceImpl implements ApplyService {
     }
 
     @Override
+    public List<ApplyDto> findAllByUserProfileId(int id) {
+        return mapper.toDtos(repo.findAllByUserProfile_Id(id));
+    }
+
+    @Override
+    public List<ApplyDto> findAllByCompanyProfileId(int id) {
+        return mapper.toDtos(repo.findAllByJob_CompanyProfile_IdOrderByStatus(id));
+    }
+
+    @Override
     public List<ApplyDto> findAllByStatus(ApplyStatus status) {
         return mapper.toDtos(repo.findAllByStatus(status));
     }

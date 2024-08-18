@@ -35,6 +35,11 @@ public class FreeOpportunityServiceImpl implements FreeOpportunityService {
         return mapper.toDtos(repo.findAll());
     }
 
+    @Override
+    public List<FreeOpportunityDto> findAllByUserId(int id) {
+        return mapper.toDtos(repo.findAllByUserProfile_IdOrderByCreatedDateDesc(id));
+    }
+
 
     @Override
     public FreeOpportunityDto add(AddFreeOpportunityDto dto) {

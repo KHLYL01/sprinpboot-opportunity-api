@@ -28,6 +28,11 @@ public class JobSubCategoryServiceImpl implements JobSubCategoryService {
         return mapper.toDtos(repo.findAll());
     }
 
+    @Override
+    public List<JobSubCategoryDto> findAllByCategoryId(int id) {
+        return mapper.toDtos(repo.findAllByJobCategory_Id(id));
+    }
+
 
     @Override
     public JobSubCategoryDto add(AddJobSubCategoryDto dto) {

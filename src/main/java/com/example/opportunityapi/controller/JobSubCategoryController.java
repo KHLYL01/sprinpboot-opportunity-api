@@ -19,6 +19,11 @@ public class JobSubCategoryController {
         return ResponseEntity.ok(service.findAll());
     }
 
+    @GetMapping("/job_categories/{id}")
+    public ResponseEntity<?> findAllByCategoryId(@PathVariable int id) {
+        return ResponseEntity.ok(service.findAllByCategoryId(id));
+    }
+
     @PostMapping
     public ResponseEntity<?> add(@RequestBody AddJobSubCategoryDto dto) {
         return new ResponseEntity<>(service.add(dto), HttpStatus.CREATED);

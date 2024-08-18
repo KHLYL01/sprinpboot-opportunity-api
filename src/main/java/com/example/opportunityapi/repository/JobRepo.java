@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface JobRepo extends JpaRepository<Job, Integer> {
 
-    List<Job> findAllByCompanyProfile_Id(int id);
+    List<Job> findAllByCompanyProfile_IdOrderByCreatedDateDesc(int id);
 
 }
