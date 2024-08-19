@@ -14,6 +14,7 @@ import com.example.opportunityapi.repository.JobRepo;
 import com.example.opportunityapi.repository.UserProfileRepo;
 import com.example.opportunityapi.service.ApplyService;
 import com.example.opportunityapi.service.FreeCategoryService;
+import com.example.opportunityapi.service.SendMailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +29,7 @@ public class ApplyServiceImpl implements ApplyService {
     private final JobRepo jobRepo;
     private final UserProfileRepo userProfileRepo;
     private final ApplyMapper mapper;
+    private final SendMailService sendMailService;
 
 
     @Override
@@ -79,6 +81,14 @@ public class ApplyServiceImpl implements ApplyService {
         apply.setStatus(dto.getStatus());
 
         //ToDo notifications and Email
+        if (dto.getStatus() == ApplyStatus.ACCEPTABLE) {
+            String message = apply.getJob().getCompanyProfile().getUser().getName() + "'s company has accepted you for the ( " + apply.getJob().getTitle() + " ) job";
+            sendMailService.sendMail(apply.getUserProfile().getUser().getEmail(), message, "Accepted Successfully");
+        }
+        if (dto.getStatus() == ApplyStatus.UNACCEPTABLE) {
+            String message = apply.getJob().getCompanyProfile().getUser().getName() + "'s company has rejected your request,try again";
+            sendMailService.sendMail(apply.getUserProfile().getUser().getEmail(), message, "Rejected Request");
+        }
 
         Apply saved = repo.save(apply);
 

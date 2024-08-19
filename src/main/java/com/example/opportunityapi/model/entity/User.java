@@ -23,7 +23,7 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
+
     private String name;
 
     @Column(unique = true)
@@ -38,6 +38,8 @@ public class User implements UserDetails {
 //    private String verificationCode;
 
     private Role role;
+
+    private boolean enable;
 
     @CreationTimestamp
     private LocalDateTime createdDate;
@@ -69,6 +71,6 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return enable;
     }
 }

@@ -1,9 +1,6 @@
 package com.example.opportunityapi.service.impl;
 
-import com.example.opportunityapi.model.dto.AddJobCategoryDto;
-import com.example.opportunityapi.model.dto.AddJobDto;
-import com.example.opportunityapi.model.dto.JobCategoryDto;
-import com.example.opportunityapi.model.dto.JobDto;
+import com.example.opportunityapi.model.dto.*;
 import com.example.opportunityapi.model.entity.*;
 import com.example.opportunityapi.model.mapper.JobCategoryMapper;
 import com.example.opportunityapi.model.mapper.JobMapper;
@@ -29,6 +26,24 @@ public class JobServiceImpl implements JobService {
     @Override
     public List<JobDto> findAll() {
         return mapper.toDtos(repo.findAll());
+    }
+
+    @Override
+    public JobDto findById(int id) {
+        return mapper.toDto(repo.findById(id).get());
+    }
+
+    @Override
+    public List<JobDto> search(JobSearchDto dto) {
+        return mapper.toDtos(repo.searchJob(
+                dto.getTitle(),
+                dto.getGender(),
+                dto.getNationality(),
+                dto.getJobType(),
+                dto.getExperience(),
+                dto.getOnline(),
+                dto.getJobCategoryName()
+        ));
     }
 
     @Override

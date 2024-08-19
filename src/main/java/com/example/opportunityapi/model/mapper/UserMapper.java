@@ -2,17 +2,26 @@ package com.example.opportunityapi.model.mapper;
 
 
 import com.example.opportunityapi.model.dto.UserDto;
+import com.example.opportunityapi.model.dto.UserProfileDto;
 import com.example.opportunityapi.model.dto.UserRegisterDto;
 import com.example.opportunityapi.model.entity.User;
+import com.example.opportunityapi.model.entity.UserProfile;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class UserMapper {
 
     private final PasswordEncoder passwordEncoder;
+
+    public List<UserDto> toDtos(List<User> entities) {
+        return entities.stream().map(this::toDto).collect(Collectors.toList());
+    }
 
     public UserDto toDto(User entity) {
         return UserDto.builder()

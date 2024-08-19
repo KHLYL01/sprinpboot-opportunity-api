@@ -44,15 +44,21 @@ public class AuthServiceImpl implements AuthService {
 
         User user = userMapper.toEntity(dto);
 
+        if (user.getRole() == Role.COMPANY) {
+            user.setEnable(false);
+        } else {
+            user.setEnable(true);
+        }
 //        user.setEnabled(false);
 //        user.setVerificationCode(verificationCode);
 
         User savedUser = userRepo.save(user);
-        if (savedUser.getRole() == Role.COMPANY) {
-            companyProfileRepo.save(CompanyProfile.builder()
-                    .user(user)
-                    .build());
-        } else if (savedUser.getRole() == Role.USER) {
+//        if (savedUser.getRole() == Role.COMPANY) {
+//            companyProfileRepo.save(CompanyProfile.builder()
+//                    .user(user)
+//                    .build());
+//        } else
+        if (savedUser.getRole() == Role.USER) {
             userProfileRepo.save(UserProfile.builder()
                     .user(user)
                     .build());

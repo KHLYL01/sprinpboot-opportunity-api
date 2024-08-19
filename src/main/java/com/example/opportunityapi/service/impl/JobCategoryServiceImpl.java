@@ -1,18 +1,11 @@
 package com.example.opportunityapi.service.impl;
 
 import com.example.opportunityapi.model.dto.AddJobCategoryDto;
-import com.example.opportunityapi.model.dto.AddRateDto;
 import com.example.opportunityapi.model.dto.JobCategoryDto;
-import com.example.opportunityapi.model.dto.RateDto;
 import com.example.opportunityapi.model.entity.JobCategory;
-import com.example.opportunityapi.model.entity.Rate;
 import com.example.opportunityapi.model.mapper.JobCategoryMapper;
-import com.example.opportunityapi.model.mapper.RateMapper;
-import com.example.opportunityapi.repository.CompanyProfileRepo;
 import com.example.opportunityapi.repository.JobCategoryRepo;
-import com.example.opportunityapi.repository.RateRepo;
 import com.example.opportunityapi.service.JobCategoryService;
-import com.example.opportunityapi.service.RateService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
